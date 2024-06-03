@@ -27,3 +27,6 @@ dist-ssr
 __pycache__
 .env
 assets_compiled
+
+# python env
+env

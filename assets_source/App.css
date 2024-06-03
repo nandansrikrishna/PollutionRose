@@ -1,0 +1,114 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    padding-top: 5em;
+  }
+  
+  .header-content {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    background-color: #333;
+    color:white;
+    padding: 1em;
+    z-index: 1000; /* As the user scrolls this stays visible over other elements */
+  }
+  
+  .header-element {
+    padding: 1.5em;
+  }
+  
+  .input-wrapper {
+    padding-top: 5em;
+  }
+  
+  .input-content {
+    padding: 2em;
+    left: 0%;
+    width:100%;
+    background-color: #333;
+  }
+  
+  .input-element {
+    padding: 0.5em;
+  }
+  
+  .date-advanced {
+    padding: 1em;
+  }
+  
+  .rose {
+    width: 600px;
+    height: 560px;
+    margin: 0px auto;
+    border: 3px solid #333;
+  }
+  
+  .spacer {
+    padding: 1em;
+  }
+  
+  .textfield{
+    height: 40px;
+    background: #D3D3D3;
+    color:#000;
+    border: 4px solid #333;
+    border-radius: 14px;
+    padding: 0 20px;
+    width: 100px;
+  }
+  
+  .submit {
+    background: white;
+    color: black;
+  }
+  
+  .select {
+    height: 40px;
+    background: #D3D3D3;
+    color:#000;
+    border: 4px solid #333;
+    border-radius: 14px;
+    padding: 0 20px;
+    width: 250px;
+  }
+  
+  .logo {
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+  }
+  .logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+  }
+  .logo.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+  }
+  
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    a:nth-of-type(2) .logo {
+      animation: logo-spin infinite 20s linear;
+    }
+  }
+  
+  .card {
+    padding: 2em;
+  }
+  
+  .read-the-docs {
+    color: #888;
+  }
+  
