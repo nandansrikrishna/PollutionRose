@@ -9,16 +9,22 @@ import './App.css'
 const App: React.FC = () => {
 
   const [showRose, setShowRose] = useState(false);
+  const [inputsJSON, setInputsJSON] = useState({})
 
-  const handleShowRose = () => {
+  const handleShowRose = (updatedJSON : Record<string, unknown>) => {
+    setInputsJSON(updatedJSON);
+    // GET ROSE IMG FROM BACKEND //
+
+    ///////////////////////////////
     setShowRose(true);
   };
+
 
   return (
     <>
     <Header />
     <Inputs propState={handleShowRose} />
-    {showRose && <Rose />}
+    {showRose && <Rose inputsJSON={inputsJSON}/>}
     </>
   );
 };

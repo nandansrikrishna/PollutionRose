@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { } from 'react'
 
-const Rose: React.FC = () => {
+const Rose: React.FC<{inputsJSON: Record<string, unknown>}> = ({inputsJSON}) => {
   const reset = () => window.location.reload()
     return (
       <>
@@ -11,6 +11,7 @@ const Rose: React.FC = () => {
       </div>
       <div id="chartDiv" className="rose">
         <p>rose img</p>
+        {JSON.stringify(inputsJSON)}
       </div>
       </>
     )
