@@ -25,7 +25,7 @@ const Inputs: React.FC<inputsProps> = ({ propState }) => {
 
 	const calmRef = useRef<HTMLInputElement>(null);
 	
-	const [units, setUnits] = useState('mph');
+	const [calmUnits, setCalmUnits] = useState('mph');
 	const [calmValue, setCalmValue] = useState(1.3);
 	
 	// period start date -->                            DEFAULT IS 7 DAYS BEFORE TODAY
@@ -159,7 +159,7 @@ const Inputs: React.FC<inputsProps> = ({ propState }) => {
 	const handleUnitsChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const newUnits = event.target.value;
 		let newCalmValue = calmValue;
-		if (units === 'm/s') {
+		if (calmUnits === 'm/s') {
 			newCalmValue *= 2.23694; // convert to mph
 		} else {
 			newCalmValue /= 2.23694; // convert to m/s
@@ -168,7 +168,7 @@ const Inputs: React.FC<inputsProps> = ({ propState }) => {
 		if (calmRef.current) {
 			calmRef.current.value = (Math.round(newCalmValue * 1000) / 1000).toString();
 		}
-		setUnits(newUnits);
+		setCalmUnits(newUnits);
 	};
 
 	const handleCalmChange = (event : ChangeEvent<HTMLInputElement>) => {
@@ -178,7 +178,7 @@ const Inputs: React.FC<inputsProps> = ({ propState }) => {
 	const generateRose = (event: React.FormEvent) => {
 		event.preventDefault();
 		var updatedJSON = {"periodStart" : periodStart, "periodEnd": periodEnd, "subDateStart": subDateStart, "subDateEnd": subDateEnd,
-			"subTimeStart": subTimeStart, "subTimeEnd": subTimeEnd, "subWeekDays": subWeekDays, "units": units, "calmValue": calmValue
+			"subTimeStart": subTimeStart, "subTimeEnd": subTimeEnd, "subWeekDays": subWeekDays, "calmUnits": calmUnits, "calmValue": calmValue
 		};
 		propState(updatedJSON);
 	};
@@ -252,8 +252,8 @@ const Inputs: React.FC<inputsProps> = ({ propState }) => {
 				<div>
 					<div className='input-element'>
 						<span>Units:</span>
-						<input type='radio' name='units' value='mph' onChange={handleUnitsChange} checked={units==='mph'} /><label>mph</label>
-						<input type='radio' name='units' value='m/s' onChange={handleUnitsChange} checked={units==='m/s'} /><label>m/s</label>
+						<input type='radio' name='units' value='mph' onChange={handleUnitsChange} checked={calmUnits==='mph'} /><label>mph</label>
+						<input type='radio' name='units' value='m/s' onChange={handleUnitsChange} checked={calmUnits==='m/s'} /><label>m/s</label>
 					</div>
 					<div className='input-element'>
 						<span>Calm: </span><input ref={calmRef} type='number' min="0" step=".001" className='textfield' name="calm" defaultValue={calmValue} onBlur={handleCalmChange}/>
@@ -269,7 +269,7 @@ const Inputs: React.FC<inputsProps> = ({ propState }) => {
 					subInterval Time beginning at {subTimeStart} and ending at {subTimeEnd},<br/>
 					on day(s) {subWeekDays[0] ? `monday, ` : ``}{subWeekDays[1] ? `tuesday, ` : ``}{subWeekDays[2] ? `wednesday, ` : ``}
 					{subWeekDays[3] ? `thursday, ` : ``}{subWeekDays[4] ? `friday, ` : ``}{subWeekDays[5] ? `saturday, ` : ``}{subWeekDays[6] ? `sunday, ` : ``}<br/>
-					using calm value {calmValue} {units}
+					using calm value {calmValue} {calmUnits}
 				</p>
 			</div>
 			</form>
