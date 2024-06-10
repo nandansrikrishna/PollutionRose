@@ -4,14 +4,13 @@ import { useState } from 'react'
 function Header(){
     return (
       <>
-      <div className="header-logo"><img src=''></img></div>
-      <div className="header-content">
-        <span className="header-element">Station Name: --Placeholder name-- </span>
-        <span className="header-element">Station County: --Placeholder county--</span>
-        <span className="header-element">Station State: --Placeholder state-- </span>
-        <button className="header-element">Select New Station</button>
-        <span className='header-element'></span>
-        <button className="header-element">More Station Info</button>
+      <div className='navbar'>
+      <div className="logo"><img src='leaf-logo.png'/><span>Detroit Air - Rose</span></div>
+      <ul>
+        <li><a className="navbar-item" href='SOMEWERE EVENTUALLY'>Current Station Info</a></li>
+        <li><a className="navbar-item" href='SOMEWERE EVENTUALLY'>About</a></li>
+        <li><a className="navbar-item" href='SOMEWERE EVENTUALLY'>FAQ</a></li>
+      </ul>
       </div>
       </>
     )

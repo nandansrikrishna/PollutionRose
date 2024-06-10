@@ -1,114 +1,191 @@
-#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-    padding-top: 5em;
-  }
+
+
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+ * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', 'sans-serif';
+  font-size: 16px;
+  line-height: 1.5;
+  color: black;
+  background-color: #a1c3ff;
+  height: 1000px;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  max-width: 100%;
+}
+
+
+ /* --------------- NAVBAR START -------------  */
+.navbar {
+  display: flex;
+  background-color: #3474e6;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar ul {
+  display: flex;
+  margin: 10px;
+  list-style-type: none;
+  align-items: space-around;
+}
+
+.navbar ul li {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.navbar a:hover{
+  color: lightblue;
+}
+
+.navbar img {
+  max-height: 20px;
+}
   
-  .header-content {
-    position: fixed;
-    top: 0%;
-    left: 0%;
-    width: 100%;
-    background-color: #333;
-    color:white;
-    padding: 1em;
-    z-index: 1000; /* As the user scrolls this stays visible over other elements */
-  }
-  
-  .header-element {
-    padding: 1.5em;
-  }
-  
-  .input-wrapper {
-    padding-top: 5em;
-  }
-  
-  .input-content {
-    padding: 2em;
-    left: 0%;
-    width:100%;
-    background-color: #333;
-  }
-  
-  .input-element {
-    padding: 0.5em;
-  }
-  
-  .date-advanced {
-    padding: 1em;
-  }
-  
-  .rose {
-    width: 600px;
-    height: 560px;
-    margin: 0px auto;
-    border: 3px solid #333;
-  }
-  
-  .spacer {
-    padding: 1em;
-  }
-  
-  .textfield{
-    height: 40px;
-    background: #D3D3D3;
-    color:#000;
-    border: 4px solid #333;
-    border-radius: 14px;
-    padding: 0 20px;
-    width: 100px;
-  }
-  
-  .submit {
-    background: white;
-    color: black;
-  }
-  
-  .select {
-    height: 40px;
-    background: #D3D3D3;
-    color:#000;
-    border: 4px solid #333;
-    border-radius: 14px;
-    padding: 0 20px;
-    width: 250px;
-  }
-  
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.react:hover {
-    filter: drop-shadow(0 0 2em #61dafbaa);
-  }
-  
-  @keyframes logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  @media (prefers-reduced-motion: no-preference) {
-    a:nth-of-type(2) .logo {
-      animation: logo-spin infinite 20s linear;
-    }
-  }
-  
-  .card {
-    padding: 2em;
-  }
-  
-  .read-the-docs {
-    color: #888;
-  }
-  
+.navbar .logo {
+  display: flex;
+  margin: 10px;
+  font-size: x-large;
+  font-weight: bold;
+  will-change: filter;
+  transition: filter 300ms;
+  align-items: center;
+  justify-content: space-around;
+}
+.navbar .logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.navbar .logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+/* ---------------- NAVBAR END ---------------*/
+
+/* ---------------- INPUT START -------------- */
+
+.textfield {
+  height: 40px;
+  background: #DEEFF4;
+  color: black;
+  border: 2px solid ;
+  border-radius: 10px;
+  padding: 0 20px;
+  width: 100px;
+}
+
+.input-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 600px;
+
+  background: #3474e6;
+  color: #fff;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.6);
+  padding: 20px 20px;   
+}
+
+.input-wrapper .container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-wrapper ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.input-wrapper li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20px;
+}
+
+.input-wrapper li span {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.input-wrapper h4 {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.input-wrapper select {
+  height: 40px;
+  background: #DEEFF4;
+  color:#000;
+  font-size: medium;
+  text-align-last: center;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 0 20px;
+  width: 250px;
+}
+
+.input-wrapper input {
+  height: 40px;
+  background: #DEEFF4;
+  color:#000;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 0 20px;
+  width: 150px;
+}
+
+.input-wrapper .weekdays {
+  display: flex;
+  flex-direction: row;
+}
+
+.input-wrapper .weekdays  {
+  margin-right: 3px;
+}
+
+.input-wrapper .weekdays label {
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper .weekdays input {
+  width: 18px;
+}
+
+.input-wrapper button:hover {
+  color: #3474e6;
+}
+
+
+/* ---------------- INPUT END -----------------*/
