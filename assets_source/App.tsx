@@ -55,8 +55,10 @@ const App: React.FC = () => {
   return (
     <>
     <Header />
+    <div className='content'>
     <Inputs propState={handleShowRose} />
     {showRose && <Rose inputsJSON={inputsJSON}/>}
+    </div>
     </>
   );
 };
