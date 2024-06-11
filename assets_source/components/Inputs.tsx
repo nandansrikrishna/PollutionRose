@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, useRef } from 'react'
+import React, { useState, ChangeEvent, useRef, useEffect } from 'react'
 
 type inputsProps = {
 	propState: (updatedJSON : Record<string, unknown>) => void;
@@ -186,12 +186,16 @@ const Inputs: React.FC<inputsProps> = ({ propState }) => {
 		setCalmValue(Number(event.target.value));
 	}
 
-	const generateRose = (event: React.FormEvent) => {
-		event.preventDefault();
+	const defaultRose = () => {
 		var updatedJSON = {"periodStart" : periodStart, "periodEnd": periodEnd, "subDateStart": subDateStart, "subDateEnd": subDateEnd,
 			"subTimeStart": subTimeStart, "subTimeEnd": subTimeEnd, "subWeekDays": subWeekDays, "calmUnits": calmUnits, "calmValue": calmValue
 		};
 		propState(updatedJSON);
+	}
+
+	const generateRose = (event: React.FormEvent) => {
+		event.preventDefault();
+		defaultRose();
 	};
 
 	const handleWeekDay = (event: ChangeEvent<HTMLInputElement>) => {
@@ -204,8 +208,12 @@ const Inputs: React.FC<inputsProps> = ({ propState }) => {
 	const handleEnter = (event: React.KeyboardEvent<HTMLFormElement>) => {
 		if (event.key === 'Enter') {
 			event.preventDefault();
-		}
+		}	
 	};
+
+	useEffect(() => {
+		defaultRose();
+	}, []);
 
 	return (
 		<>
@@ -272,13 +280,13 @@ const Inputs: React.FC<inputsProps> = ({ propState }) => {
 				<button type='button' onClick={handleAdvancedParametersButton}>{showAdvancedParameters ? `Hide Advanced Parameters` : `Show Advanced Parameters`}</button>
 				{showAdvancedParameters && (
 				<div>
-					<div className='input-element'>
-						<span>Units:</span>
+					<div className='calm-units'>
+						<span>Calm 	Units:</span>
 						<input type='radio' name='units' value='mph' onChange={handleUnitsChange} checked={calmUnits==='mph'} /><label>mph</label>
 						<input type='radio' name='units' value='m/s' onChange={handleUnitsChange} checked={calmUnits==='m/s'} /><label>m/s</label>
 					</div>
-					<div className='input-element'>
-						<span>Calm: </span><input ref={calmRef} type='number' min="0" step=".001" className='textfield' name="calm" defaultValue={calmValue} onBlur={handleCalmChange}/>
+					<div>
+						<span>Calm Value: </span><input ref={calmRef} type='number' min="0" step=".001" className='textfield' name="calm" defaultValue={calmValue} onBlur={handleCalmChange}/>
 					</div>
 				</div>
 				)}

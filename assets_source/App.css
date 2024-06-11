@@ -14,12 +14,21 @@ body {
   line-height: 1.5;
   color: black;
   background-color: #a1c3ff;
-  height: 1000px;
+  height: max-content;
 }
 
 .content {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 1200px){
+  .content {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 img {
@@ -97,7 +106,11 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 600px;
+  min-width: 275px;
+  max-width: 500px;
+  width: 100%;
+  margin-left: 20px;
+  margin-right: 20px;
 
   background: #3474e6;
   color: #fff;
@@ -183,9 +196,44 @@ img {
   width: 18px;
 }
 
+.input-wrapper .calm-units {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+.input-wrapper .calm-units input {
+  width: 18px;
+}
+
 .input-wrapper button:hover {
   color: #3474e6;
 }
 
 
-/* ---------------- INPUT END -----------------*/
+/* ---------------- INPUT END ------------------ */
+
+
+/* ---------------- ROSE START ----------------- */
+
+.rose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 3px solid;
+  border-radius: 10px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  
+
+  aspect-ratio: 1 / 0.66;
+
+}
+
+/* -----------------ROSE END ------------------- */

@@ -43,8 +43,7 @@ const App: React.FC = () => {
   const [inputsJSON, setInputsJSON] = useState({})
 
   const handleShowRose = (updatedJSON : Record<string, unknown>) => {
-    setInputsJSON(updatedJSON);
-    // GET ROSE IMG FROM BACKEND //
+    setInputsJSON(updatedJSON);    // GET ROSE IMG FROM BACKEND //
     const response = requestFromBackend(inputsJSON);
     
     ///////////////////////////////
