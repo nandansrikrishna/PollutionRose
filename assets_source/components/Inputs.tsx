@@ -44,15 +44,15 @@ const Inputs: React.FC<inputsProps> = ({ propState }) => {
 	// period end date	-->								DEFAULT IS TODAY
 	const [periodEnd, setPeriodEnd] = useState(getDate(0));
 	// sub-interval start date
-	const [subDateStart, setSubDateStart] = useState('01-01')
+	const [subDateStart, setSubDateStart] = useState('01-01');
 	// sub-interval end date
-	const [subDateEnd, setSubDateEnd] = useState('12-31')
+	const [subDateEnd, setSubDateEnd] = useState('12-31');
 	// sub-interval start time
-	const [subTimeStart, setSubTimeStart] = useState('12:00 AM')
+	const [subTimeStart, setSubTimeStart] = useState('12:00 AM');
 	// sub-interval end time
-	const [subTimeEnd, setSubTimeEnd] = useState('11:59 PM')
+	const [subTimeEnd, setSubTimeEnd] = useState('11:59 PM');
 	// sub-interval days of the week
-	const [subWeekDays, setSubWeekDays] = useState([true, true, true, true, true, true, true])
+	const [subWeekDays, setSubWeekDays] = useState([true, true, true, true, true, true, true]);
 
 	const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
 		// Update the measurement period variables
@@ -162,7 +162,6 @@ const Inputs: React.FC<inputsProps> = ({ propState }) => {
 		setSubTimeEnd(event.target.value);
 	};
 
-
 	const handleAdvancedParametersButton = () => {
 		setShowAdvancedParameters(!showAdvancedParameters);
 	};
@@ -221,7 +220,7 @@ const Inputs: React.FC<inputsProps> = ({ propState }) => {
 			<form onSubmit={generateRose} onKeyDown={handleEnter}>
 			<div className='container'>
 				<div className='container'>
-				<h4>Select Measurement Period</h4>
+				<h3>Select Measurement Period</h3>
 				<select id="date-select" className='select' onChange={handleSelectChange}>
 					<option value='7'>Last 7 Days</option>
 					<option value="30">Last 30 Days</option>
@@ -292,7 +291,7 @@ const Inputs: React.FC<inputsProps> = ({ propState }) => {
 				)}
 			</div>
 			<div className='container'>
-				<button type='submit' className='submit'>Generate Rose</button>
+				<button type='submit'>Generate Rose</button>
 				{DEVMODE && (<p>
 					Current Rose Parameters: <br/>
 					measurement period beginning on {periodStart} and ending on {periodEnd},<br/>

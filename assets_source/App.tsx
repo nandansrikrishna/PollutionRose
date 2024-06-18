@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from './components/Header.tsx'
 import Inputs from './components/Inputs.tsx'
 import Rose from './components/Rose.tsx'
@@ -35,28 +35,31 @@ const App: React.FC = () => {
 
     } catch (error) {
       alert("error sending data to backend");
-      return { success: false, message: {} };
+      return { success: false, message: {jsonData} };
     }
   };
 
   const [showRose, setShowRose] = useState(false);
-  const [inputsJSON, setInputsJSON] = useState({})
+  const [inputsJSON, setInputsJSON] = useState({});
+  const [roseJSON, setRoseJSON] = useState({});
+  const [fetchResponse, setFetchResponse] = useState({});
 
   const handleShowRose = (updatedJSON : Record<string, unknown>) => {
-    setInputsJSON(updatedJSON);    // GET ROSE IMG FROM BACKEND //
-    const response = requestFromBackend(inputsJSON);
-    
+    setInputsJSON(updatedJSON);    
+    // GET ROSE IMG FROM BACKEND //
+    const dataForBackend = {"inputs": inputsJSON, "rose": roseJSON}
+    const fetchResponse = requestFromBackend(dataForBackend);
+    setFetchResponse(fetchResponse);
     ///////////////////////////////
     setShowRose(true);
   };
-
 
   return (
     <>
     <Header />
     <div className='content'>
     <Inputs propState={handleShowRose} />
-    {showRose && <Rose inputsJSON={inputsJSON}/>}
+    {showRose && <Rose inputsJSON={inputsJSON} fetchResponse={inputsJSON}/>}
     </div>
     </>
   );
