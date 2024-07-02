@@ -7,7 +7,7 @@ import './App.css'
 
 
 const App: React.FC = () => {
-  const ENDPOINT_URL = "";
+  const ENDPOINT_URL = "http://127.0.0.1:8000/generate-rose";
 
   interface BackendResponse {
     success: boolean;

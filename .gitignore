@@ -30,3 +30,6 @@ assets_compiled
 
 # python env
 env
+
+# data
+meteorological_data.csv
