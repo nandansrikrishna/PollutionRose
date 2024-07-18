@@ -1,68 +1,68 @@
-import React, { useEffect, useState } from 'react'
-import Header from './components/Header.tsx'
-import Inputs from './components/Inputs.tsx'
-import Rose from './components/Rose.tsx'
-import './App.css'
-
-
+import React, { useState } from "react";
+import Header from "./components/Header.tsx";
+import Inputs from "./components/Inputs.tsx";
+import "./App.css";
 
 const App: React.FC = () => {
-  const ENDPOINT_URL = "http://127.0.0.1:8000/generate-rose";
+  const ENDPOINT_URL = "http://127.0.0.1:5001/generate-rose";
 
   interface BackendResponse {
     success: boolean;
-    message: Record<string, unknown>;
+    message: string;
   }
 
-  const requestFromBackend = async (jsonData: Record<string, unknown>) : Promise<BackendResponse> => {
+  const requestFromBackend = async (
+    jsonData: Record<string, unknown>
+  ): Promise<Blob> => {
     try {
-      const msg = {
-        method: 'POST',
+      const response = await fetch(ENDPOINT_URL, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          //other headers
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(jsonData),
-      }
-      const response = await fetch(ENDPOINT_URL, msg);
-      if (!response.ok){
-        throw new Error('Failed to send data to the backend');
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch image from the backend");
       }
 
-      // handle response
-      const responseData = await response.json();
-      return responseData as BackendResponse;
-
+      // Assuming the response is a PNG image
+      return response.blob(); // Return the blob (image) data
     } catch (error) {
-      alert("error sending data to backend");
-      return { success: false, message: {jsonData} };
+      // console.error("Error sending data to backend:", error);
+      throw error; // Propagate the error up
     }
   };
 
   const [showRose, setShowRose] = useState(false);
-  const [inputsJSON, setInputsJSON] = useState({});
-  const [roseJSON, setRoseJSON] = useState({});
-  const [fetchResponse, setFetchResponse] = useState({});
+  const [roseImage, setRoseImage] = useState<string | null>(null); // State to store image URL
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleShowRose = (updatedJSON : Record<string, unknown>) => {
-    setInputsJSON(updatedJSON);    
-    // GET ROSE IMG FROM BACKEND //
-    const dataForBackend = {"inputs": inputsJSON, "rose": roseJSON}
-    const fetchResponse = requestFromBackend(dataForBackend);
-    setFetchResponse(fetchResponse);
-    ///////////////////////////////
-    setShowRose(true);
+  const handleShowRose = async (updatedJSON: Record<string, unknown>) => {
+    try {
+      const blob = await requestFromBackend(updatedJSON);
+
+      // Convert blob to URL for image display
+      const imageUrl = URL.createObjectURL(blob);
+      setRoseImage(imageUrl); // Set the image URL to state
+      setShowRose(true); // Set flag to display the rose image
+    } catch (error) {
+      console.error("Error fetching image:", error);
+      setErrorMessage("Error fetching image from the backend.");
+    }
   };
 
   return (
     <>
-    <Header />
-    <div className='content'>
-    <Inputs propState={handleShowRose} />
-    {showRose && <Rose inputsJSON={inputsJSON} fetchResponse={inputsJSON}/>}
-    </div>
+      <Header />
+      <div className="content">
+        <Inputs propState={handleShowRose} />
+        {showRose && roseImage && <img src={roseImage} alt="Windrose" />}
+        {errorMessage && <p>{errorMessage}</p>}
+      </div>
     </>
   );
 };
 
-export default App
+export default App;

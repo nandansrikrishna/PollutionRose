@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 interface Sensor {
   id: number;
@@ -15,7 +15,6 @@ interface RoseProps {
 }
 
 const Rose: React.FC<RoseProps> = ({ inputsJSON, fetchResponse }) => {
-  
   // State variables
   const [sensors, setSensors] = useState<Sensor[]>([]);
   const [sensorPollutants, setSensorPollutants] = useState<Pollutant[]>([]);
@@ -24,11 +23,10 @@ const Rose: React.FC<RoseProps> = ({ inputsJSON, fetchResponse }) => {
 
   // Fetch the list of sensors
   const getSensorList = async () => {
-    
     // Replace with actual API call !!! //
     const sensorList: Sensor[] = [
-      { id: 1, name: 'Sensor A' },
-      { id: 2, name: 'Sensor B' },
+      { id: 1, name: "Sensor A" },
+      { id: 2, name: "Sensor B" },
     ];
     //////////////////////////////////////
 
@@ -37,21 +35,16 @@ const Rose: React.FC<RoseProps> = ({ inputsJSON, fetchResponse }) => {
 
   // Fetch the list of pollutants for a given sensor
   const getPollutantList = async (sensorID: number) => {
-    
     // Replace with actual API call //////
     var pollutantList: Pollutant[];
-    if(selectedSensor === 2){
+    if (selectedSensor === 2) {
       pollutantList = [
-        { name: 'Pollutant 2' },
-        { name: 'Pollutant 3' },
-        { name: 'Pollutant 4' }
+        { name: "Pollutant 2" },
+        { name: "Pollutant 3" },
+        { name: "Pollutant 4" },
       ];
-    }
-    else {
-      pollutantList = [
-        { name: 'Pollutant 1' },
-        { name: 'Pollutant 2' },
-      ];
+    } else {
+      pollutantList = [{ name: "Pollutant 1" }, { name: "Pollutant 2" }];
     }
     //////////////////////////////////////
 
@@ -60,8 +53,7 @@ const Rose: React.FC<RoseProps> = ({ inputsJSON, fetchResponse }) => {
 
   const handleShowPollution = () => {
     setShowPollution(!showPollution);
-  }
-  
+  };
 
   // Fetch sensor info when Rose is first loaded
   useEffect(() => {
@@ -69,7 +61,7 @@ const Rose: React.FC<RoseProps> = ({ inputsJSON, fetchResponse }) => {
     getPollutantList(selectedSensor);
   }, []);
 
-  // Fetch pollutants whenever a new Sensor is selected 
+  // Fetch pollutants whenever a new Sensor is selected
   useEffect(() => {
     if (selectedSensor !== -1) {
       getPollutantList(selectedSensor);
@@ -79,19 +71,27 @@ const Rose: React.FC<RoseProps> = ({ inputsJSON, fetchResponse }) => {
   return (
     <>
       <div id="chartDiv" className="rose">
-        <div className='infobar'>
+        <div className="infobar">
           <ul>
             <li>
-                <input type="checkbox" id='toggle_switch' onChange={handleShowPollution}/>
-                <label htmlFor='toggle_switch'></label>
-                <span className='toggle-text'>Rose Type</span>
+              <input
+                type="checkbox"
+                id="toggle_switch"
+                onChange={handleShowPollution}
+              />
+              <label htmlFor="toggle_switch"></label>
+              <span className="toggle-text">Rose Type</span>
             </li>
-            {showPollution && (            
+            {showPollution && (
               <li>
                 <h4>Select Sensor</h4>
-                <select onChange={(e) => setSelectedSensor(Number(e.target.value))}>
-                  {sensors.map(sensor => (
-                    <option key={sensor.id} value={sensor.id}>{sensor.name}</option>
+                <select
+                  onChange={(e) => setSelectedSensor(Number(e.target.value))}
+                >
+                  {sensors.map((sensor) => (
+                    <option key={sensor.id} value={sensor.id}>
+                      {sensor.name}
+                    </option>
                   ))}
                 </select>
               </li>
@@ -101,30 +101,33 @@ const Rose: React.FC<RoseProps> = ({ inputsJSON, fetchResponse }) => {
                 <h4>Select Pollutant</h4>
                 <select>
                   {sensorPollutants.map((pollutant, index) => (
-                    <option key={index} value={pollutant.name}>{pollutant.name}</option>
+                    <option key={index} value={pollutant.name}>
+                      {pollutant.name}
+                    </option>
                   ))}
                 </select>
               </li>
             )}
-            <li><h4>{showPollution ? "Displaying Pollution Rose" : "Displaying Wind Rose"}</h4></li>
+            <li>
+              <h4>
+                {showPollution
+                  ? "Displaying Pollution Rose"
+                  : "Displaying Wind Rose"}
+              </h4>
+            </li>
           </ul>
         </div>
-        <div className='container'>
+        <div className="container">
           {JSON.stringify(fetchResponse, null, 2)}
         </div>
       </div>
     </>
   );
-}
+};
 
 export default Rose;
 
-
-
 ////////////////////////////////////////////////////
-
-
-
 
 /*import React, { useState } from 'react'
 

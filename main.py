@@ -8,7 +8,7 @@ from matplotlib import pyplot as plt
 import matplotlib.cm as cm
 from windrose import WindroseAxes
 import io
-
+from flask_cors import CORS
 matplotlib.use('Agg')
 
 # Set up application.
@@ -31,18 +31,21 @@ def homepage():
 @app.route('/generate-rose', methods=['POST'])
 def generate_rose():
     data = request.json
-    inputs = data.get('inputs', {})
-    rose_params = data.get('rose', {})
-
-    start_date = inputs.get('start_date')
-    end_date = inputs.get('end_date')
+    start_date = data.get('periodStart', {})
+    end_date = data.get('periodEnd', {})
+    # print("Received JSON:", data)
+    # start_date = "2019-01-02 00:00:00"
+    # end_date = "2019-01-31 23:59:59"
+  
+    # print(f"Period Start: {start_date}")
+    # print(f"Period End: {end_date}")
 
     url = "https://windrose-api-r2oaltsiuq-uc.a.run.app/meteorological_data/csv/"
     params = {
     "start_date": start_date,
     "end_date": end_date
     }
-
+    
     response = requests.get(url, params=params)
 
     if response.status_code == 200:
